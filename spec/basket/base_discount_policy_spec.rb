@@ -3,16 +3,15 @@ require './lib/basket/discount_factory'
 
 describe BaseDiscountPolicy do
   before do
-    
+    class DummyDiscount < BaseDiscountPolicy
+    end
   end
 
   it 'add the policy whenever I inherith from base' do
-    class Dummy < BaseDiscountPolicy
-    end
-
-    klass = DiscountFactory.get_policy('Dummy')
-    expect(klass).to eq(Dummy)
+    klass = DiscountFactory.get_policy('DummyDiscount')
+    expect(klass).to eq(DummyDiscount)
   end
+
 
 
 end

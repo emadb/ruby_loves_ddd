@@ -35,6 +35,7 @@ class Basket
     @items.clear
   end
 
+  # TODO: move the price calculation logic outside the basket class
   def total_price
     total = @items.inject(0) do |sum, item|
       sum + item.total_price 
@@ -44,7 +45,7 @@ class Basket
 
   def apply_discount (code)
     discount_policy = @discount_factory.get_policy(code)
-    @discount = discount_policy (items)
+    @discount = discount_policy.apply
   end
 
   private
@@ -53,3 +54,4 @@ class Basket
     selected_items[0] if selected_items.size == 1
   end
 end
+

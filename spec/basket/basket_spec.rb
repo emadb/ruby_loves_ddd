@@ -85,15 +85,15 @@ describe Basket do
     expect(@basket.total_price).to eq(20.00)
   end
 
-  # it 'apply coupon to get a discount of 10%' do
-  #   @basket.add_item(@item_one)
-  #   @basket.add_item(@item_one)
-  #   @basket.add_item(@item_two)
+  it 'apply coupon to get a discount of 10%' do
+    @basket.add_item(@item_one)
+    @basket.add_item(@item_one)
+    @basket.add_item(@item_two)
 
-  #   @basket.apply_discount('Less10')
+    @basket.apply_discount('Less10')
 
-  #   expect(@basket.total_price).to eq(18.00)
-  # end
+    expect(@basket.total_price).to eq(18.00)
+  end
 
 end
 
