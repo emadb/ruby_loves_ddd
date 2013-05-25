@@ -2,8 +2,10 @@ require './lib/basket/basket_item'
 
 class Basket
   
-  def initialize
+  def initialize (discount_factory = nil)
     @items = []
+    @discount_factory = discount_factory
+    @discount = 1
   end
 
   def items
@@ -34,9 +36,15 @@ class Basket
   end
 
   def total_price
-    @items.inject(0) do |sum, item|
+    total = @items.inject(0) do |sum, item|
       sum + item.total_price 
-    end
+    end  
+    total * @discount
+  end
+
+  def apply_discount (code)
+    discount_policy = @discount_factory.get_policy(code)
+    @discount = discount_policy (items)
   end
 
   private

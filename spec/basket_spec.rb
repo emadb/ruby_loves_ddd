@@ -11,10 +11,11 @@
 #
 require './lib/basket/basket'
 require './lib/basket/article'
+require './lib/basket/discount_factory'
 
 describe Basket do
   before do
-    @basket = Basket.new
+    @basket = Basket.new (DiscountFactory)
     @item_one = Article.new('one', 5.00)
     @item_two = Article.new('two', 10.00)
   end
@@ -84,6 +85,15 @@ describe Basket do
     expect(@basket.total_price).to eq(20.00)
   end
 
+  # it 'apply coupon to get a discount of 10%' do
+  #   @basket.add_item(@item_one)
+  #   @basket.add_item(@item_one)
+  #   @basket.add_item(@item_two)
+
+  #   @basket.apply_discount('Less10')
+
+  #   expect(@basket.total_price).to eq(18.00)
+  # end
 
 end
 
