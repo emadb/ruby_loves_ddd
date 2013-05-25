@@ -10,15 +10,14 @@ class BaseDiscountPolicy
   end
 end
 
-# TODO: Test this class
 class Less10 < BaseDiscountPolicy
   def self.apply (items = nil)
     0.9
   end
 end
 
-# TODO: Test this class
 class ThreeForTwo < BaseDiscountPolicy
   def self.apply (items)
+    0.6667
   end
 end
