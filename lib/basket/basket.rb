@@ -1,6 +1,7 @@
 require './lib/basket/basket_item'
 
 class Basket
+  attr_accessor :id, :description
   
   def initialize (discount_factory = nil)
     @items = []

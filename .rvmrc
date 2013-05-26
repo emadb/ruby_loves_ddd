@@ -1,1 +1,1 @@
-rvm ruby-1.9.3-p286@DDD --create
+rvm ruby-2.0.0-p195@DDD --create
