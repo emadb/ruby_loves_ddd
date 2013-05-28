@@ -1,6 +1,8 @@
 require './lib/basket/base_discount_policy'
 require './lib/basket/discount_factory'
 
+include BasketManagement
+
 describe BaseDiscountPolicy do
   before do
     class DummyDiscount < BaseDiscountPolicy

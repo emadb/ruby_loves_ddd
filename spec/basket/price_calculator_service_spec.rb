@@ -1,5 +1,7 @@
 require './lib/basket/price_calculator_service'
 
+include BasketManagement
+
 describe PriceCalculatorService do
   before do
     @service = PriceCalculatorService.new

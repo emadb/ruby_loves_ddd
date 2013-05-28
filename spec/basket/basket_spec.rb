@@ -16,6 +16,8 @@ require './lib/basket/basket'
 require './lib/basket/article'
 require './lib/basket/discount_factory'
 
+include BasketManagement
+
 describe Basket do
   before do
     @basket = Basket.new (PriceCalculatorService.new)

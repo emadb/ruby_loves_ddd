@@ -1,5 +1,7 @@
 require './lib/basket/discount_factory'
 
+include BasketManagement
+
 describe DiscountFactory do
   before do
     

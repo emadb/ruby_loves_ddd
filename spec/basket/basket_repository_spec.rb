@@ -1,5 +1,6 @@
 require './lib/basket/basket_repository'
 require './lib/basket/basket'
+include BasketManagement
 
 describe BasketRepository do
 
