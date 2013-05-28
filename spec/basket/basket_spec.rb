@@ -1,6 +1,9 @@
 # 2 contesti: carrello e magazzino
 # CARRELLO
 # - applica coupon sconto
+#   - x% sul totale
+#   - x% se il numero degli items è maggiore di Y
+#   - compri 3 paghi 2
 # - scegli tipo spedizione
 # - gestione dei bundle (se hai comprato A e compri B ottieni uno sconto)
 # - effettua checkout
@@ -15,7 +18,7 @@ require './lib/basket/discount_factory'
 
 describe Basket do
   before do
-    @basket = Basket.new (DiscountFactory)
+    @basket = Basket.new (PriceCalculatorService.new)
     @item_one = Article.new('one', 5.00)
     @item_two = Article.new('two', 10.00)
   end
@@ -96,18 +99,6 @@ describe Basket do
   end
 
 end
-
-
-#
-# MAGAZZINO
-# - accoda ordine per processarlo
-# - scarica articolo dal magazzino
-# - carica nuovo articolo in magazzino
-#
-#
-#
-#
-#
 
 
 

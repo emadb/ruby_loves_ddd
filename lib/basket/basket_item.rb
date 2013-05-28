@@ -1,9 +1,9 @@
 class BasketItem
   attr_reader :item, :quantity
   
-  def initialize (item)
+  def initialize (item, quantity = 1)
     @item = item
-    @quantity = 1
+    @quantity = quantity
   end
 
   def increase_quantity

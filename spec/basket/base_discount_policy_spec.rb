@@ -31,5 +31,15 @@ describe ThreeForTwo do
   end
 end
 
+# describe Less15For3 do
+#   it 'if the items count is greater than 3 items' do
+#   end  
+# end
+
+# describe FreeShipping do
+#   it 'if the total price is greater than 100 shipping is free of charge' do
+#   end  
+# end
+
 
 

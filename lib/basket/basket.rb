@@ -1,11 +1,9 @@
 require './lib/basket/basket_item'
 
 class Basket
-  attr_accessor :id, :description
-  
-  def initialize (discount_factory = nil)
+  def initialize (price_calculator_service = nil)
     @items = []
-    @discount_factory = discount_factory
+    @price_calculator_service = price_calculator_service
     @discount = 1
   end
 
@@ -36,17 +34,12 @@ class Basket
     @items.clear
   end
 
-  # TODO: move the price calculation logic outside the basket class
   def total_price
-    total = @items.inject(0) do |sum, item|
-      sum + item.total_price 
-    end  
-    total * @discount
+    @price_calculator_service.calculate (items)
   end
 
   def apply_discount (code)
-    discount_policy = @discount_factory.get_policy(code)
-    @discount = discount_policy.apply
+    @price_calculator_service.apply_coupon(code)
   end
 
   private
