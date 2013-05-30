@@ -1,3 +1,5 @@
+# TODO: move to basket context
+
 module BasketManagement
   class AddToBasketCommand
     attr_reader :basket_id, :article_id
