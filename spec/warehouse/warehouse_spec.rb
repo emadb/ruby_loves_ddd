@@ -1,5 +1,6 @@
-require './lib/warehouse/warehouse'
-require './lib/warehouse/article'
+require 'spec_helper'
+require 'warehouse/warehouse'
+require 'warehouse/article'
 
 describe WarehouseArea::Warehouse do
   before do

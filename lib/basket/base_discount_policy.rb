@@ -1,4 +1,4 @@
-require './lib/basket/discount_factory'
+require 'basket/discount_factory'
 module BasketManagement
   class BaseDiscountPolicy
     def self.inherited(subclass)

@@ -1,3 +1,4 @@
+require 'basket/discount_factory'
 module BasketManagement
   class PriceCalculatorService
     def initialize
