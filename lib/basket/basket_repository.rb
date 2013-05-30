@@ -8,8 +8,7 @@ module BasketManagement
       #get the aggregate from database
     end
 
-    def get_basket (basket_id)
-      
+    def get_basket (basket_id)     
       # get some events from the store
       events = [
         {:aggregate_id => 1, :name => :item_added, :args => 2  },
