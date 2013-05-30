@@ -1,4 +1,4 @@
-require './lib/commands/command_executor'
+require './lib/command_executor'
 
 include CommandExecutor
 
