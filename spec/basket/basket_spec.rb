@@ -23,7 +23,6 @@ module BasketManagement
     it 'does not change size if I add the same item twice' do
       @basket.add_item(@item_one)
       @basket.add_item(@item_one)
-
       expect(@basket.item_count).to eq(1)
     end
 

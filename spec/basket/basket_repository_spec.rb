@@ -1,3 +1,4 @@
+
 Dir["./lib/**/*.rb"].each {|file| require file }
 
 describe BasketManagement::BasketRepository do
@@ -6,6 +7,5 @@ describe BasketManagement::BasketRepository do
     basket = repository.get_basket 1
 
     expect(basket.items.size).to eq(2)
-    
   end
 end
