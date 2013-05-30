@@ -1,35 +1,38 @@
-require './lib/basket/base_discount_policy'
-require './lib/basket/discount_factory'
+require 'spec_helper'
 
-include BasketManagement
+require 'basket/base_discount_policy'
+require 'basket/article'
+require 'basket/basket_item'
 
-describe BaseDiscountPolicy do
+describe BasketManagement::BaseDiscountPolicy do
   before do
-    class DummyDiscount < BaseDiscountPolicy
+    class DummyDiscount < subject.class
     end
   end
 
   it 'add the policy whenever I inherith from base' do
-    klass = DiscountFactory.get_policy('DummyDiscount')
+    klass = BasketManagement::DiscountFactory.get_policy('DummyDiscount')
     expect(klass).to eq(DummyDiscount)
   end
 end
 
 
-describe Less10 do
+describe BasketManagement::Less10 do
   it 'should return 10% of discount (0.9)' do
-    expect(Less10.apply).to eq(0.9)
+    expect(subject.class.send(:apply)).to eq(0.9)
   end
 end
 
-describe ThreeForTwo do
+describe BasketManagement::ThreeForTwo do
   it 'shuold return 10% of discount (0.9)' do
     items = []
-    items << BasketItem.new(Article.new(1, 10))
+    article = BasketManagement::Article.new(1, 10)
+    items << BasketManagement::BasketItem.new(article)
     items[0].increase_quantity
     items[0].increase_quantity
 
-    expect(ThreeForTwo.apply(items)).to eq(0.6667)
+    expect(subject.class.send(:apply, items)).to eq(0.6667)
+    #expect(ThreeForTwo.apply(items)).to eq(0.6667)
   end
 end
 
