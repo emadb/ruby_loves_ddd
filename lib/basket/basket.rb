@@ -21,12 +21,15 @@ module BasketManagement
         new_item = BasketItem.new(item)
         @items << new_item
       end
+
       apply_event :item_added, item
     end
 
     def remove_item (item)
       selected_item = get_item(item)
       selected_item.decrease_quantity
+
+      apply_event :item_removed, item
     end
 
     def item_count
@@ -43,6 +46,7 @@ module BasketManagement
 
     def apply_discount (code)
       @price_calculator_service.apply_coupon(code)
+      apply_event :apply_discount, code
     end
 
     private

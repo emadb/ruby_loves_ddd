@@ -10,8 +10,9 @@ class AggregateRoot
   end
 
   def commit
-    @uncommited_events.each do |e|
-      # persist the events
+    while event = @uncommited_events.shift
+      # TODO persist the events
+      # TODO notify subscribers using a message bus
     end
   end
 end
