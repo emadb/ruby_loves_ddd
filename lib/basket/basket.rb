@@ -1,6 +1,8 @@
+require './lib/aggregate_root'
 require './lib/basket/basket_item'
+
 module BasketManagement
-  class Basket
+  class Basket < AggregateRoot
     def initialize (price_calculator_service = nil)
       @items = []
       @price_calculator_service = price_calculator_service
@@ -19,6 +21,7 @@ module BasketManagement
         new_item = BasketItem.new(item)
         @items << new_item
       end
+      apply_event :item_added, item
     end
 
     def remove_item (item)
