@@ -17,7 +17,5 @@ describe AddToBasketHandler  do
     handler = AddToBasketHandler.new(fake_repo)
     handler.execute BasketManagement::AddToBasketCommand.new(2,1)
     expect(basket.item_count).to eq(1)
-    puts basket
-
   end
 end
