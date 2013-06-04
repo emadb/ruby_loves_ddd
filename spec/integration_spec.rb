@@ -1,32 +1,27 @@
-Dir["./lib/*.rb"].each {|file| require file }
-Dir["./lib/basket/*.rb"].each {|file| require file }
+require 'spec_helper'
 
-describe 'Various interestig scenario' do
+describe 'Basket and Warehouse scenarios' do
+	def create_handler
+		fake_repo = double('basket_repository')
+    basket = BasketManagement::Basket.new
+    article = BasketManagement::Article.new(1, 'test')
+    fake_repo.stub(:get_basket => basket)
+    fake_repo.stub(:get_article => article)
 
-	class StubbedEntity
-		include AggregateRootHelper
-		attr_reader :is_called
-
-		def initialize
-			subscribe_to :item_added, :on_item_added
-			@is_called = false
-		end
-
-		def on_item_added
-			@is_called = true
-		end
+    AddToBasketHandler.new(fake_repo)
 	end
 
+	def create_warehouse
+		repository = double('warehouse_repository')
+    WarehouseArea::Warehouse.new (@repository)
+	end
 
-  it 'should be able to send and receive domain events' do
-		basket = BasketManagement::Basket.new    
-		stub = StubbedEntity.new
+	it 'when an item is added to the basket the warehouse should receive a message' do
+		handler = create_handler
+		warehouse = create_warehouse
 
-		basket.add_item 'fake'
-
-		expect(stub.is_called).to eq(true)
-
-  end
+	  handler.execute BasketManagement::AddToBasketCommand.new(2,1)
 
 
+	end
 end
