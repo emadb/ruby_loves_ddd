@@ -1,7 +1,5 @@
+Dir["./lib/**/*.rb"].each {|file| require file }
 
-require File.join(File.dirname(__FILE__), '..', 'core_ext.rb')
-require './lib/basket/basket_item'
-require './lib/aggregate_root_helper'
 
 module BasketManagement
   class Basket
@@ -16,13 +14,10 @@ module BasketManagement
     end
 
     def add_item (item)
-      get_item(item).try(:increase_quantity) || @items << BasketItem.new(item)      
       raise_event :item_added, item
     end
 
     def remove_item (item)
-      selected_item = get_item(item)
-      selected_item.decrease_quantity
       raise_event :item_removed, item
     end
 
@@ -39,13 +34,28 @@ module BasketManagement
     end
 
     def apply_discount (code)
+      raise_event :apply_discount, code
+    end
+
+    def on_item_added item
+      get_item(item).try(:increase_quantity) || @items << BasketItem.new(item)      
+    end
+
+    def on_item_removed item
+      selected_item = get_item(item)
+      selected_item.decrease_quantity
+      if selected_item.quantity == 0
+        items.delete selected_item
+      end
+    end
+
+    def on_apply_discount code
       @price_calculator_service.apply_coupon(code)
     end
 
     private
     def get_item (item)
       @items.select{|i| i.item == item}.try :first
-      
     end
   end
 end
