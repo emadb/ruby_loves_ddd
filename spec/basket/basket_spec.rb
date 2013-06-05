@@ -128,6 +128,5 @@ module BasketManagement
         expect(@basket.uncommited_events.size).to eq(1)
       end
     end
-
   end
 end

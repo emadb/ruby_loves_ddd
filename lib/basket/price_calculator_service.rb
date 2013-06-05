@@ -7,7 +7,7 @@ module BasketManagement
     end
     
     def calculate (items)
-      total = items.inject(0) do |sum, item|  
+      total = items.reduce(0) do |sum, item|  
         sum = sum + item.total_price
       end
       
