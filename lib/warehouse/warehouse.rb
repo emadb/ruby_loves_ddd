@@ -1,5 +1,8 @@
+require './lib/aggregate_root_helper'
+
 module WarehouseArea
   class Warehouse
+    include AggregateRootHelper
 
     def initialize(repository)
       @repository = repository
@@ -12,6 +15,7 @@ module WarehouseArea
       else
         article.lock_for(basket_id)
         #@repository.save article
+        raise_event :article_locked, [article_id, basket_id]
       end
     end
     def unlock (article_id)
@@ -21,6 +25,7 @@ module WarehouseArea
       else
         article.unlock
         #@repository.save article
+        raise_event :article_unlocked, [article_id]
       end
     end
   end

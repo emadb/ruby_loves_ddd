@@ -40,6 +40,7 @@ module BasketManagement
 
     def apply_discount (code)
       @price_calculator_service.apply_coupon(code)
+      raise_event :discount_applied, code
     end
 
     private
