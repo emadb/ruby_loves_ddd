@@ -1,27 +1,35 @@
 module AggregateRootHelper
-	def raise_event event, *args
-    hash = get_hash event
-    hash[:subscribers].each do |s|
-      s[:instance].send(s[:method])
-    end
-	end
+  @@subscribers = Hash.new{|hash,key| hash[key]=[]}
 
-	def subscribe_to event, method_name
-		hash = get_hash event
-    hash[:subscribers] << {instance: self,  method: method_name}
-	end
-
-	
-  def get_hash event
-  	@@subscribers ||= []
-    elements = @@subscribers.select {|f| !f[:event].nil? and f[:event] = event } 
-    if elements.size == 0
-      hash = {event: event, subscribers: []}
-	    @@subscribers << hash
-      hash
-    else
-      elements[0]
-    end
+  def self.included(klass)
+    klass.extend AggregateRootHelper
+  end
+  
+  def subscribe_to(event, method)
+    @@subscribers[event] << {klass: self, method: method}
   end
 
+  def raise_event(event, *args)
+    @@subscribers[event].each do |subscriber| 
+      ObjectSpace.each_object subscriber[:klass] do |instance|
+        instance.send subscriber[:method], args
+      end
+    end
+  end
+end
+
+class Bar
+  include AggregateRootHelper
+  subscribe_to :my_event, :my_method
+
+  def my_method
+    puts 'my_method is called'
+  end
+end
+
+class EventRaiser 
+  include AggregateRootHelper
+  def fire
+    raise_event :my_event
+  end
 end

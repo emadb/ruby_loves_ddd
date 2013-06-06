@@ -6,13 +6,14 @@ describe 'Various interestig scenario' do
 	class StubbedEntity
 		include AggregateRootHelper
 		attr_reader :is_called
+		subscribe_to :item_added, :on_item_added
 
 		def initialize
-			subscribe_to :item_added, :on_item_added
+			
 			@is_called = false
 		end
 
-		def on_item_added
+		def on_item_added(item)
 			@is_called = true
 		end
 	end
