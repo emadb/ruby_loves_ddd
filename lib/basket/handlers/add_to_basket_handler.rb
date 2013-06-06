@@ -1,8 +1,8 @@
 module Handlers
   class AddToBasketHandler
 
-    def initialize (repository = nil)
-      @repository = repository || BasketManagement::BasketRepository.new
+    def initialize (repository = BasketManagement::BasketRepository.new)
+      @repository = repository 
     end
 
     def execute(add_to_basket_command)
