@@ -12,17 +12,8 @@
 #   - effettua pagamento
 #   - genera ordine
 #
+
 require 'spec_helper'
-require 'basket/basket'
-require 'basket/article'
-require 'basket/discount_factory'
-# se non richiediamo questa classe `rspec spec/basket/basket_spec.rb` in isolazione fallisce
-require 'basket/price_calculator_service'
-# se non richiediamo questa classe, la classe Less10 e company non vengono
-# censite e lo sconto non viene applicato, si deve probabilmente lanciare
-# un'eccezione se si tenta di applicare un discount e questo non e' censito,
-# piuttosto che non applicarlo silenziosamente
-require 'basket/base_discount_policy'
 
 module BasketManagement
 

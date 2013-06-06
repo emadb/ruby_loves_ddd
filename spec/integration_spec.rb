@@ -1,23 +1,21 @@
-Dir["./lib/*.rb"].each {|file| require file }
-Dir["./lib/basket/*.rb"].each {|file| require file }
+require 'spec_helper'
 
-describe 'Various interestig scenario' do
+class StubbedEntity
+	include AggregateRootHelper
+	attr_reader :is_called
+	subscribe_to :item_added, :on_item_added
 
-	class StubbedEntity
-		include AggregateRootHelper
-		attr_reader :is_called
-		subscribe_to :item_added, :on_item_added
-
-		def initialize
-			
-			@is_called = false
-		end
-
-		def on_item_added(item)
-			@is_called = true
-		end
+	def initialize
+		
+		@is_called = false
 	end
 
+	def on_item_added(item)
+		@is_called = true
+	end
+end
+
+describe 'Various interestig scenario' do
 
   it 'should be able to send and receive domain events' do
 		basket = BasketManagement::Basket.new    
@@ -26,8 +24,6 @@ describe 'Various interestig scenario' do
 		basket.add_item 'fake'
 
 		expect(stub.is_called).to eq(true)
-
   end
-
-
+  
 end

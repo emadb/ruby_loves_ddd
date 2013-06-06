@@ -1,7 +1,4 @@
-
-require File.join(File.dirname(__FILE__), '..', 'core_ext.rb')
-require './lib/basket/basket_item'
-require './lib/aggregate_root_helper'
+Dir["./lib/**/*.rb"].each {|file| require file }
 
 module BasketManagement
   class Basket

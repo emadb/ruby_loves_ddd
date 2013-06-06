@@ -1,6 +1,4 @@
 require 'spec_helper'
-require 'warehouse/warehouse'
-require 'warehouse/article'
 
 describe WarehouseArea::Warehouse do
   before do

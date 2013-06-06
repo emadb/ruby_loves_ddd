@@ -5,6 +5,7 @@
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 
+Dir["./lib/**/*.rb"].each {|file| require file }
 $:.unshift File.expand_path('../lib', __FILE__)
 
 RSpec.configure do |config|

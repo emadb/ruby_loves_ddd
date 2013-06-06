@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'basket/discount_factory'
 
 module BasketManagement
   describe DiscountFactory do

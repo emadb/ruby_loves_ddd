@@ -1,12 +1,5 @@
 require 'spec_helper'
-require 'basket/price_calculator_service'
-require 'basket/basket_item'
-require 'basket/article'
-# se non richiediamo questa classe, la classe Less10 e company non vengono
-# censite e lo sconto non viene applicato, si deve probabilmente lanciare
-# un'eccezione se si tenta di applicare un discuont e questo non e' censito,
-# piuttosto che non applicarlo silenziosamente
-require 'basket/base_discount_policy'
+
 
 module BasketManagement
   describe PriceCalculatorService do

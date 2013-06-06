@@ -1,4 +1,5 @@
-require 'basket/discount_factory'
+Dir["./lib/**/*.rb"].each {|file| require file }
+
 module BasketManagement
   class BaseDiscountPolicy
     def self.inherited(subclass)

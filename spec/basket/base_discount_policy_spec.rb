@@ -1,9 +1,5 @@
 require 'spec_helper'
 
-require 'basket/base_discount_policy'
-require 'basket/article'
-require 'basket/basket_item'
-
 describe BasketManagement::BaseDiscountPolicy do
   before do
     class DummyDiscount < subject.class
@@ -32,7 +28,6 @@ describe BasketManagement::ThreeForTwo do
     items[0].increase_quantity
 
     expect(subject.class.send(:apply, items)).to eq(0.6667)
-    #expect(ThreeForTwo.apply(items)).to eq(0.6667)
   end
 end
 

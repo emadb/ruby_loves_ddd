@@ -1,4 +1,4 @@
-require './lib/aggregate_root_helper'
+Dir["./lib/**/*.rb"].each {|file| require file }
 
 module WarehouseArea
   class Warehouse
