@@ -33,6 +33,11 @@ module BasketManagement
       @item_two = Article.new('two', 10.00)
     end
 
+    it 'should have an id' do
+      @basket.id = 'new-basket'
+      expect(@basket.id).to eq('new-basket')
+    end 
+
     it 'should be possible to add a new item and count should raise' do
       @basket.add_item(@item_one)
 
