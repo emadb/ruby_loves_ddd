@@ -61,9 +61,10 @@ module BasketManagement
 
     it 'should decrease quantity if I remove an item that is in the basket' do
       @basket.add_item(@item_one)
+      @basket.add_item(@item_one)
       @basket.remove_item(@item_one)
 
-      expect(@basket.items[0].quantity).to eq(0)
+      expect(@basket.items[0].quantity).to eq(1)
     end
 
     it 'should decrease quantity if I remove an item that is in the basket' do
