@@ -25,19 +25,3 @@ module AggregateRootHelper
     end
   end
 end
-
-class Bar
-  include AggregateRootHelper
-  subscribe_to :my_event, :my_method
-
-  def my_method
-    puts 'my_method is called'
-  end
-end
-
-class EventRaiser 
-  include AggregateRootHelper
-  def fire
-    raise_event :my_event
-  end
-end
