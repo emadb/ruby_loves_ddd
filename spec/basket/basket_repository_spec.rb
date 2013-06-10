@@ -4,6 +4,6 @@ require 'basket/basket'
 
 describe BasketManagement::BasketRepository do
   it 'should create a new basket in the collection' do
-    pending
+    
   end
 end
