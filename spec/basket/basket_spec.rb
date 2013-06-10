@@ -113,26 +113,26 @@ module BasketManagement
       expect(@basket.total_price).to eq(18.00)
     end
 
-    context 'cqrs and ev' do
-      it 'add_item should add event to the list' do
-        @basket.add_item(@item_one)
-        @basket.add_item(@item_two)
-        expect(@basket.uncommited_events.size).to eq(2)
-      end
+    # context 'cqrs and ev' do
+    #   it 'add_item should add event to the list' do
+    #     @basket.add_item(@item_one)
+    #     @basket.add_item(@item_two)
+    #     expect(@basket.uncommited_events.size).to eq(2)
+    #   end
 
-      it 'remove_item should add event to the list' do
-        @basket.add_item(@item_one)
-        @basket.remove_item(@item_one)
+    #   it 'remove_item should add event to the list' do
+    #     @basket.add_item(@item_one)
+    #     @basket.remove_item(@item_one)
         
-        expect(@basket.uncommited_events.size).to eq(2)
-      end
+    #     expect(@basket.uncommited_events.size).to eq(2)
+    #   end
 
-      it 'apply_coupon should add event to the list' do
-        @basket.apply_discount('Less10')
+    #   it 'apply_coupon should add event to the list' do
+    #     @basket.apply_discount('Less10')
         
-        expect(@basket.uncommited_events.size).to eq(1)
-      end
-    end
 
+    #     expect(@basket.uncommited_events.size).to eq(1)
+    #   end
+    # end
   end
 end

@@ -1,7 +1,7 @@
 module WarehouseArea
-  class Warehouse < AggregateRoot
-
-    subscribe :item_added, :on_item_added
+  class Warehouse
+    include AggregateRootHelper
+    subscribe_to :item_added, :on_item_added
 
     def initialize(repository)
       @repository = repository
@@ -10,7 +10,7 @@ module WarehouseArea
     def lock (article_id, basket_id)
       article = @repository.get_by_code(article_id)
       if (article.nil?)
-        raise 'article not available'
+        raise_error'article not available'
       else
         article.lock_for(basket_id)
         #@repository.save article
@@ -20,15 +20,15 @@ module WarehouseArea
     def unlock (article_id)
       article = @repository.get_by_code(article_id)
       if (article.nil?)
-        raise 'article not available'
+        raise_error 'article not available'
       else
         article.unlock
         #@repository.save article
       end
     end
 
-    def on_item_added(item_id, basket_id)
-      puts '#######################'
+    def on_item_added(item_id)
+      # Do something with the item. Probably lock it.
     end
 
 
