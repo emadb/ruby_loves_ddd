@@ -1,13 +1,7 @@
 module AggregateRootHelper
   @@subscribers = Hash.new{|hash,key| hash[key]=[]}
 
-  def id= id
-    @id = id
-  end
-
-  def id
-    @id
-  end
+  attr_accessor :id
 
   def self.included(klass)
     klass.extend AggregateRootHelper

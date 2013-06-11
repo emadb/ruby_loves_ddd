@@ -43,7 +43,6 @@ module BasketManagement
     private
     def get_item (item)
       @items.select{|i| i.item == item}.try :first
-      
     end
   end
 end
