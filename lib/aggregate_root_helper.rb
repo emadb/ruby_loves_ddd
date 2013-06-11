@@ -8,7 +8,7 @@ module AggregateRootHelper
   attr_accessor :id
 
   def uncommited_events
-    @uncommited_events || []
+    @uncommited_events ||= []
   end
 
   def subscribe_to(event, method)
@@ -29,9 +29,9 @@ module AggregateRootHelper
   end
 
   def send_event event
-    @@subscribers[event.name].each do |subscriber| 
+    @@subscribers[event[:name]].each do |subscriber| 
       ObjectSpace.each_object subscriber[:klass] do |instance|
-        instance.send subscriber[:method], event.args
+        instance.send subscriber[:method], event[:args]
       end
     end
   end
