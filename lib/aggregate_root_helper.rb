@@ -1,22 +1,16 @@
 module AggregateRootHelper
   @@subscribers = Hash.new{|hash,key| hash[key]=[]}
 
-  def id= id
-    @id = id
+  def self.included(klass)
+    klass.extend AggregateRootHelper
   end
-
-  def id
-    @id
-  end
+  
+  attr_accessor :id
 
   def uncommited_events
     @uncommited_events || []
   end
 
-  def self.included(klass)
-    klass.extend AggregateRootHelper
-  end
-  
   def subscribe_to(event, method)
     @@subscribers[event] << {klass: self, method: method}
   end
