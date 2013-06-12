@@ -1,18 +1,3 @@
-# 2 contesti: carrello e magazzino
-# CARRELLO
-# - applica coupon sconto
-#   - x% sul totale
-#   - x% se il numero degli items è maggiore di Y
-#   - compri 3 paghi 2
-# - scegli tipo spedizione
-# - gestione dei bundle (se hai comprato A e compri B ottieni uno sconto)
-# - effettua checkout
-#   - inserisci indirizzo spedizione
-#   - inserisci indirizzo fatturazione
-#   - effettua pagamento
-#   - genera ordine
-#
-
 require 'spec_helper'
 
 module BasketManagement
