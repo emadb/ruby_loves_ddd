@@ -2,8 +2,7 @@ module BasketManagement
   class Article
     attr_reader :id, :price
     def initialize (id, price)
-      @id = id
-      @price = price
+      @id, @price = id, price
     end
   end
 end

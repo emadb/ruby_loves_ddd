@@ -3,8 +3,7 @@ module BasketManagement
     attr_reader :item, :quantity
     
     def initialize (item, quantity = 1)
-      @item = item
-      @quantity = quantity
+      @item, @quantity = item, quantity
     end
 
     def increase_quantity
