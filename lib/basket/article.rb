@@ -1,8 +1,4 @@
-module BasketManagement
-  class Article
-    attr_reader :id, :price
-    def initialize (id, price)
-      @id, @price = id, price
-    end
+module BasketManagement 
+  class Article < Struct.new(:id, :price)
   end
 end
