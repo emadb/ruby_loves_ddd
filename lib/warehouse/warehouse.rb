@@ -13,7 +13,8 @@ module WarehouseArea
         raise_error'article not available'
       else
         article.lock_for(basket_id)
-        #@repository.save article
+
+        @repository.save article
       end
     end
 
@@ -23,7 +24,7 @@ module WarehouseArea
         raise_error 'article not available'
       else
         article.unlock
-        #@repository.save article
+        @repository.save article
       end
     end
 
