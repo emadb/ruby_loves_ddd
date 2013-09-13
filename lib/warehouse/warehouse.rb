@@ -14,7 +14,7 @@ module WarehouseArea
         raise 'article not available'
       else
         article.lock_for(basket_id)
-        #@repository.save article
+        @repository.save article
         raise_event :article_locked, [article_id, basket_id]
       end
     end
@@ -24,7 +24,7 @@ module WarehouseArea
         raise 'article not available'
       else
         article.unlock
-        #@repository.save article
+        @repository.save article
         raise_event :article_unlocked, [article_id]
       end
     end
