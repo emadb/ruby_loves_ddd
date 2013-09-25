@@ -1,6 +1,5 @@
 Dir["./lib/**/*.rb"].each {|file| require file }
 
-
 module BasketManagement
   class Basket
     include AggregateRootHelper
@@ -37,6 +36,7 @@ module BasketManagement
       raise_event :apply_discount, code
     end
 
+    private
     def on_item_added item
       get_item(item).try(:increase_quantity) || @items << BasketItem.new(item)      
     end
@@ -53,7 +53,6 @@ module BasketManagement
       @price_calculator_service.apply_coupon(code)
     end
 
-    private
     def get_item (item)
       @items.select{|i| i.item == item}.try :first
     end
